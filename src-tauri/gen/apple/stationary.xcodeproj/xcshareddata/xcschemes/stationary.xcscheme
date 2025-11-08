@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B4E6DDF418D0484752D3BB9C"
-               BuildableName = "patternfly-tauri-example.app"
-               BlueprintName = "patternfly-tauri-example_iOS"
-               ReferencedContainer = "container:patternfly-tauri-example.xcodeproj">
+               BuildableName = "stationary.app"
+               BlueprintName = "stationary_iOS"
+               ReferencedContainer = "container:stationary.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -31,9 +31,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B4E6DDF418D0484752D3BB9C"
-            BuildableName = "patternfly-tauri-example.app"
-            BlueprintName = "patternfly-tauri-example_iOS"
-            ReferencedContainer = "container:patternfly-tauri-example.xcodeproj">
+            BuildableName = "stationary.app"
+            BlueprintName = "stationary_iOS"
+            ReferencedContainer = "container:stationary.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <EnvironmentVariables>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B4E6DDF418D0484752D3BB9C"
-            BuildableName = "patternfly-tauri-example.app"
-            BlueprintName = "patternfly-tauri-example_iOS"
-            ReferencedContainer = "container:patternfly-tauri-example.xcodeproj">
+            BuildableName = "stationary.app"
+            BlueprintName = "stationary_iOS"
+            ReferencedContainer = "container:stationary.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B4E6DDF418D0484752D3BB9C"
-            BuildableName = "patternfly-tauri-example.app"
-            BlueprintName = "patternfly-tauri-example_iOS"
-            ReferencedContainer = "container:patternfly-tauri-example.xcodeproj">
+            BuildableName = "stationary.app"
+            BlueprintName = "stationary_iOS"
+            ReferencedContainer = "container:stationary.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>

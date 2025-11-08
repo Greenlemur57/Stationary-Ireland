@@ -2,5 +2,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    patternfly_tauri_example_lib::run()
+    stationary_lib::run()
 }

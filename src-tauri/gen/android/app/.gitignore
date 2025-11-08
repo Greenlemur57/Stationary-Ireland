@@ -1,4 +1,4 @@
-/src/main/java/xyz/tangledwires/patternfly_tauri_example/generated
+/src/main/java/xyz/tangledwires/stationary/generated
 /src/main/jniLibs/**/*.so
 /src/main/assets/tauri.conf.json
 /tauri.build.gradle.kts

@@ -19,7 +19,6 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
   build-tauri:
-    environment: Main
     permissions:
       contents: write
     strategy:

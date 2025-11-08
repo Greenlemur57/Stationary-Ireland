@@ -1,8 +1,19 @@
-# patternfly-tauri-example
+# Stationary
 
-This is a basic example [Tauri](https://tauri.app/) application that uses [PatternFly](https://patternfly.org/) + [React](https://react.dev/) for the frontend. It also supports mobile devices.
+Stationary is an app for tracking which UK train stations you've visited.
 
-## Running the app
+## Get the app
+
+### iOS
+App Store: TBD
+
+### Android
+Play Store: TBD
+APK Download: TBD
+
+## Developing
+
+### Running the app
 First, make sure you install the following dependencies: (or use the `shell.nix` file)
 - `androidsdk`
 - `at-spi2-atk`
@@ -26,5 +37,5 @@ First, make sure you install the following dependencies: (or use the `shell.nix`
 
 Then, run `make dev` on Linux, or `cargo tauri dev` for other platforms.
 
-## Compiling
+### Compiling
 The app can also be compiled with `make` or `cargo tauri build`.

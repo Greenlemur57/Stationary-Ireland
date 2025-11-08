@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">patternfly-tauri-example</string>
-    <string name="main_activity_title">patternfly-tauri-example</string>
+    <string name="app_name">stationary</string>
+    <string name="main_activity_title">stationary</string>
 </resources>

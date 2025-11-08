@@ -1,4 +1,4 @@
-package xyz.tangledwires.patternfly_tauri_example
+package xyz.tangledwires.stationary
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

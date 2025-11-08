@@ -15,10 +15,10 @@ val tauriProperties = Properties().apply {
 
 android {
     compileSdk = 36
-    namespace = "xyz.tangledwires.patternfly_tauri_example"
+    namespace = "xyz.tangledwires.stationary"
     defaultConfig {
         manifestPlaceholders["usesCleartextTraffic"] = "false"
-        applicationId = "xyz.tangledwires.patternfly_tauri_example"
+        applicationId = "xyz.tangledwires.stationary"
         minSdk = 24
         targetSdk = 36
         versionCode = tauriProperties.getProperty("tauri.android.versionCode", "1").toInt()

@@ -1,6 +1,6 @@
-name: patternfly-tauri-example
+name: stationary
 options:
-  bundleIdPrefix: xyz.tangledwires.patternfly-tauri-example
+  bundleIdPrefix: xyz.tangledwires.stationary
   deploymentTarget:
     iOS: 14.0
 fileGroups: [../../src]
@@ -10,8 +10,8 @@ configs:
 settingGroups:
   app:
     base:
-      PRODUCT_NAME: patternfly-tauri-example
-      PRODUCT_BUNDLE_IDENTIFIER: xyz.tangledwires.patternfly-tauri-example
+      PRODUCT_NAME: stationary
+      PRODUCT_BUNDLE_IDENTIFIER: xyz.tangledwires.stationary
 targetTemplates:
   app:
     type: application
@@ -24,20 +24,20 @@ targetTemplates:
     settings:
       groups: [app]
 targets:
-  patternfly-tauri-example_iOS:
+  stationary_iOS:
     type: application
     platform: iOS
     sources:
       - path: Sources
       - path: Assets.xcassets
       - path: Externals
-      - path: patternfly-tauri-example_iOS
+      - path: stationary_iOS
       - path: assets
         buildPhase: resources
         type: folder
       - path: LaunchScreen.storyboard
     info:
-      path: patternfly-tauri-example_iOS/Info.plist
+      path: stationary_iOS/Info.plist
       properties:
         LSRequiresIPhoneOS: true
         UILaunchStoryboardName: LaunchScreen
@@ -54,7 +54,7 @@ targets:
         CFBundleShortVersionString: 0.1.0
         CFBundleVersion: "0.1.0"
     entitlements:
-      path: patternfly-tauri-example_iOS/patternfly-tauri-example_iOS.entitlements
+      path: stationary_iOS/stationary_iOS.entitlements
     scheme:
       environmentVariables:
         RUST_BACKTRACE: full
