@@ -2,7 +2,7 @@ import {
   Masthead,
   MastheadMain,
   MastheadToggle,
-  Nav, NavItem,
+  Nav,
   NavList,
   Page,
   PageBody,
