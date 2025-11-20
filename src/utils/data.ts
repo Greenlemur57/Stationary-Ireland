@@ -50,9 +50,11 @@ export const Lines = {
   },
 } as const satisfies Record<string, Line>;
 
+type LineId = keyof typeof Lines;
+
 type Station = {
   displayName: string
-  lines: (keyof typeof Lines)[]
+  lines: LineId[]
 };
 
 export const Stations = {
@@ -227,7 +229,7 @@ export const Stations = {
   nineElms: { displayName: "Nine Elms", lines: ["northern"] },
   northActon: { displayName: "North Acton", lines: ["central"] },
   northEaling: { displayName: "North Ealing", lines: ["piccadilly"] },
-  northHarrow: { displayName: "northHarrow", lines: ["metropolitan"] },
+  northHarrow: { displayName: "North Harrow", lines: ["metropolitan"] },
   northWembley: { displayName: "North Wembley", lines: ["bakerloo"] },
   northfields: { displayName: "Northfields", lines: ["piccadilly"] },
   northolt: { displayName: "Northolt", lines: ["central"] },
@@ -289,9 +291,9 @@ export const Stations = {
   southwark: { displayName: "Southwark", lines: ["jubilee"] },
   stamfordBrook: { displayName: "Stamford Brook", lines: ["district"] },
   stanmore: { displayName: "Stanmore", lines: ["jubilee"] },
-  stepneyGreen: { displayName: "", lines: ["district", "hammersmithAndCity"] },
+  stepneyGreen: { displayName: "Stepney Green", lines: ["district", "hammersmithAndCity"] },
   stockwell: { displayName: "Stockwell", lines: ["victoria", "northern"] },
-  stonebridgePark: { displayName: "Stonebridge park", lines: ["bakerloo"] },
+  stonebridgePark: { displayName: "Stonebridge Park", lines: ["bakerloo"] },
   stratford: { displayName: "Stratford", lines: ["central", "jubilee"] },
   sudburyHill: { displayName: "Sudbury Hill", lines: ["piccadilly"] },
   sudburyTown: { displayName: "Sudbury Town", lines: ["piccadilly"] },
@@ -299,7 +301,7 @@ export const Stations = {
 
   temple: { displayName: "Temple", lines: ["district", "circle"] },
   theydonBois: { displayName: "Theydon Bois", lines: ["central"] },
-  tootingBec: { displayName: "Theydon Bois", lines: ["northern"] },
+  tootingBec: { displayName: "Tooting Bec", lines: ["northern"] },
   tootingBroadway: { displayName: "Tooting Broadway", lines: ["northern"] },
   tottenhamCourtRoad: { displayName: "Tottenham Court Road", lines: ["northern", "central"] },
   tottenhamHale: { displayName: "Tottenham Hale", lines: ["victoria"] },
@@ -315,11 +317,11 @@ export const Stations = {
   uptonPark: { displayName: "Upton Park", lines: ["district"] },
   uxbridge: { displayName: "Uxbridge", lines: ["metropolitan", "piccadilly"] },
 
-  vauxhall: { displayName: "Vauxhall;", lines: ["victoria"] },
+  vauxhall: { displayName: "Vauxhall", lines: ["victoria"] },
   victoria: { displayName: "Victoria", lines: ["victoria", "district", "circle"] },
 
   walthamstowCentral: { displayName: "Walthamstow Central", lines: ["victoria"] },
-  wanstead: { displayName: "Wansted", lines: ["central"] },
+  wanstead: { displayName: "Wanstead", lines: ["central"] },
   warrenStreet: { displayName: "Warren Street", lines: ["northern", "victoria"] },
   warwickAvenue: { displayName: "Warwick Avenue", lines: ["bakerloo"] },
   waterloo: { displayName: "Waterloo", lines: ["waterlooAndCity", "bakerloo", "northern", "jubilee"] },
@@ -339,10 +341,12 @@ export const Stations = {
   whiteCity: { displayName: "White City", lines: ["central"] },
   whitechapel: { displayName: "Whitechapel", lines: ["district", "hammersmithAndCity"] },
   willesdenGreen: { displayName: "Willesden Green", lines: ["jubilee"] },
-  willesdenJunction: { displayName: "WillesdenJunction", lines: ["bakerloo"] },
+  willesdenJunction: { displayName: "Willesden Junction", lines: ["bakerloo"] },
   wimbledon: { displayName: "Wimbledon", lines: ["district"] },
   wimbledonPark: { displayName: "Wimbledon Park", lines: ["district"] },
   woodGreen: { displayName: "Wood Green", lines: ["piccadilly"] },
   woodford: { displayName: "Woodford", lines: ["central"] },
   woodsidePark: { displayName: "Woodside Park", lines: ["northern"] },
 } as const satisfies Record<string, Station>;
+
+type StationId = keyof typeof Stations;
