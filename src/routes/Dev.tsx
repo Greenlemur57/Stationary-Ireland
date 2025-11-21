@@ -10,10 +10,11 @@ export default function Dev() {
 
   return (
     <>
-      <PageHeader title={"Dev tools"} description="These buttons can cause damage to your Stationary data that cannot be undone. Be careful." />
+      <PageHeader title="Dev tools" description="These buttons can cause damage to your Stationary data that cannot be undone. Be careful." />
       <PageSection>
         <Button onClick={addTestJourney} variant="primary">Add test journey</Button>
-        <Button onClick={() => storage.clearJourneys()} variant="danger">Clear journeys</Button>
+        <Button onClick={async () => console.log(await storage.getJourneys())} variant="primary">Log journeys to console</Button>
+        <Button onClick={async () => await storage.clearJourneys()} variant="danger">Clear journeys</Button>
       </PageSection>
     </>
   );
