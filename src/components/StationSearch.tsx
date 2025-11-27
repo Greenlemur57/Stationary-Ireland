@@ -1,9 +1,10 @@
 import {StationId, stationIds, Stations} from "../utils/station.ts";
 import {JSX, useEffect, useRef, useState} from "react";
-import {Menu, MenuContent, MenuItem, MenuList, Popper, SearchInput} from "@patternfly/react-core";
+import {Content, Menu, MenuContent, MenuItem, MenuList, Popper, SearchInput} from "@patternfly/react-core";
+import {LineId, Lines} from "../utils/line.ts";
 
 type StationSearchProps = {
-  onUpdate: (selectedId: StationId) => void;
+  onUpdate: (selected: [StationId, LineId]) => void;
   maxAutocompleteOptions: number;
 };
 
@@ -33,11 +34,16 @@ export function StationSearch({onUpdate, maxAutocompleteOptions = 10}: StationSe
       // Options which start with the search input value are listed first, followed by options which contain
       // the search input value.
       let options = stationIds
-        .map((id) => [id, Stations[id].displayName])
-        .filter(([_id, station]) => station.toLowerCase().startsWith(newValue.toLowerCase()))
-        .map(([id, station]) => (
-          <MenuItem itemId={id} key={id}>
-            {station}
+        .flatMap((stationId) => Stations[stationId].lines.map((lineId) => [stationId, lineId] as const))
+        .filter(([stationId, _lineId]) => Stations[stationId].displayName.toLowerCase().startsWith(newValue.toLowerCase()))
+        .map(([stationId, lineId]) => (
+          <MenuItem itemId={[stationId, lineId]} key={stationId + "." + lineId}>
+            <div style={{ borderLeft: `4px solid ${Lines[lineId].colour}`, padding: "4px" }}>
+              <Content>
+                <h5>{Stations[stationId].displayName}</h5>
+                <p>{Lines[lineId].displayName}</p>
+              </Content>
+            </div>
           </MenuItem>
         ));
       if (options.length > maxAutocompleteOptions) {
@@ -55,10 +61,10 @@ export function StationSearch({onUpdate, maxAutocompleteOptions = 10}: StationSe
 
   // Whenever an autocomplete option is selected, set the search input value, close the menu, and put the browser
   // focus back on the search input
-  const onSelect = (e: any, itemId: StationId) => {
+  const onSelect = (e: any, itemId: [StationId, LineId]) => {
     e.stopPropagation();
     onUpdate(itemId)
-    setValue(Stations[itemId].displayName);
+    setValue("");
     setIsAutocompleteOpen(false);
     searchInputRef.current.focus();
   };
