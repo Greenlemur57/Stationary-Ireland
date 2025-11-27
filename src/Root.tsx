@@ -12,9 +12,9 @@ import {
 } from "@patternfly/react-core";
 import {Outlet} from "react-router";
 import {useState} from "react";
-import NavLink from "./components/NavLink.tsx";
+import {NavLink} from "./components/NavLink.tsx";
 
-export default function Root() {
+export function Root() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const onSidebarToggle = () => {
@@ -57,6 +57,7 @@ export default function Root() {
     <Page
       masthead={masthead}
       sidebar={sidebar}
+      isContentFilled
     >
       <PageBody>
         <Outlet />

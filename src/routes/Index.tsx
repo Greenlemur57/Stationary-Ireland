@@ -1,6 +1,6 @@
-import PageHeader from "../components/PageHeader.tsx";
+import {PageHeader} from "../components/PageHeader.tsx";
 
-export default function Index() {
+export function Index() {
   return (
     <PageHeader title="Home" />
   );

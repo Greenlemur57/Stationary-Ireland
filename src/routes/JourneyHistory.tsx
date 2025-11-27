@@ -1,10 +1,10 @@
-import PageHeader from "../components/PageHeader.tsx";
+import {PageHeader} from "../components/PageHeader.tsx";
 import {Card, CardBody, CardFooter, CardTitle, Icon, List, ListItem, PageSection} from "@patternfly/react-core";
 import AngleRightIcon from '@patternfly/react-icons/dist/esm/icons/angle-right-icon';
 import {storage} from "../utils/storage.ts";
 import {Stations} from "../utils/station.ts";
 
-export default async function JourneyHistory() {
+export async function JourneyHistory() {
   return (
     <>
       <PageHeader title="Journey history" />

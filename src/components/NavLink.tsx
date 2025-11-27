@@ -21,7 +21,7 @@ const LinkComponent = React.forwardRef<HTMLAnchorElement, LinkComponentProps>(
   )
 );
 
-export default function NavLink({ isActive, to, children, ...rest }: NavLinkProps) {
+export function NavLink({ isActive, to, children, ...rest }: NavLinkProps) {
   return (
     <NavItem
       isActive={isActive}

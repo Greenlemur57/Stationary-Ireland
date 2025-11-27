@@ -1,6 +1,6 @@
 import {Content, PageSection} from "@patternfly/react-core";
 
-export default function PageHeader({ title, description }: { title: string, description?: string }) {
+export function PageHeader({ title, description }: { title: string, description?: string }) {
   return (
     <PageSection>
       <Content>

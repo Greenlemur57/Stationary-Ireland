@@ -1,29 +1,28 @@
 import {Content, PageSection} from "@patternfly/react-core";
-import {Stations} from "../utils/station.ts";
-import {Lines} from "../utils/line.ts";
-import PageHeader from "../components/PageHeader.tsx";
+import {PageHeader} from "../components/PageHeader.tsx";
+import {useMemo, useState} from "react";
+import {StationId, Stations} from "../utils/station.ts";
+import {StationSearch} from "../components/StationSearch.tsx";
 
-export default function AddJourney() {
+export function AddJourney() {
+  const [stationIds, setStationIds] = useState<StationId[]>();
+  const stations = useMemo(() => {
+    if (stationIds === undefined) return [];
+    return stationIds.map((id) => Stations[id]);
+  }, [stationIds])
+
   return (
     <>
       <PageHeader title="Add journey" />
       <PageSection>
-        {Object.entries(Stations).map(([key, station]) => (
-          <div key={key}>
-            <Content style={{ marginBottom: "4px" }}>
-              <h2>{station.displayName}</h2>
+        {stations.map((s) => (
+          <div key={s.displayName}>
+            <Content>
+              {s.displayName}
             </Content>
-            <div style={{ paddingLeft: "8px" }}>
-              {station.lines.map((line) => (
-                <div key={line} style={{ borderLeft: `4px solid ${Lines[line].colour}`, padding: "4px", marginBottom: "8px" }}>
-                  <Content>
-                    <h3>{Lines[line].displayName}</h3>
-                  </Content>
-                </div>
-              ))}
-            </div>
           </div>
         ))}
+        <StationSearch onUpdate={(selectedId) => console.log(selectedId)} maxAutocompleteOptions={100} />
       </PageSection>
     </>
   )
