@@ -108,8 +108,7 @@ export const Stations = {
   gunnersbury: { displayName: "Gunnersbury", lines: ["district"] },
 
   hainault: { displayName: "Hainault", lines: ["central"] },
-  hammersmith1: { displayName: "Hammersmith", lines: ["district", "piccadilly"] },
-  hammersmith2: { displayName: "Hammersmith", lines: ["hammersmithAndCity", "circle"] },
+  hammersmith: { displayName: "Hammersmith", lines: ["district", "piccadilly", "hammersmithAndCity", "circle"] },
   hampstead: { displayName: "Hampstead", lines: ["northern"] },
   hangerLane: { displayName: "Hanger Lane", lines: ["central"] },
   harlesden: { displayName: "Harlesden", lines: ["bakerloo"] },
