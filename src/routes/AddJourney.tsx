@@ -5,7 +5,7 @@ import {StationId, Stations} from "../utils/station.ts";
 import {StationSearch} from "../components/StationSearch.tsx";
 
 export function AddJourney() {
-  const [stationIds, setStationIds] = useState<StationId[]>();
+  const [stationIds, _setStationIds] = useState<StationId[]>();
   const stations = useMemo(() => {
     if (stationIds === undefined) return [];
     return stationIds.map((id) => Stations[id]);

@@ -14,8 +14,8 @@ export function StationSearch({onUpdate, maxAutocompleteOptions = 10}: StationSe
 
   const [isAutocompleteOpen, setIsAutocompleteOpen] = useState(false);
 
-  const searchInputRef = useRef(null);
-  const autocompleteRef = useRef(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const autocompleteRef = useRef<HTMLDivElement>(null);
 
   const onClear = () => {
     setValue('');
@@ -66,7 +66,7 @@ export function StationSearch({onUpdate, maxAutocompleteOptions = 10}: StationSe
     onUpdate(itemId)
     setValue("");
     setIsAutocompleteOpen(false);
-    searchInputRef.current.focus();
+    searchInputRef.current!.focus();
   };
 
   const handleMenuKeys = (event: any) => {
@@ -77,7 +77,7 @@ export function StationSearch({onUpdate, maxAutocompleteOptions = 10}: StationSe
         searchInputRef.current.focus();
         // the up and down arrow keys move browser focus into the autocomplete menu
       } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-        const firstElement = autocompleteRef.current.querySelector('li > button:not(:disabled)');
+        const firstElement = autocompleteRef.current!.querySelector<HTMLButtonElement>('li > button:not(:disabled)');
         firstElement && firstElement.focus();
         event.preventDefault(); // by default, the up and down arrow keys scroll the window
         // the tab, enter, and space keys will close the menu, and the tab key will move browser
@@ -89,11 +89,11 @@ export function StationSearch({onUpdate, maxAutocompleteOptions = 10}: StationSe
         }
       }
       // If the autocomplete is open and the browser focus is in the autocomplete menu
-      // hitting tab will close the autocomplete and but browser focus back on the search input.
-    } else if (isAutocompleteOpen && autocompleteRef.current.contains(event.target) && event.key === 'Tab') {
+      // hitting tab will close the autocomplete and put browser focus back on the search input.
+    } else if (isAutocompleteOpen && autocompleteRef.current!.contains(event.target) && event.key === 'Tab') {
       event.preventDefault();
       setIsAutocompleteOpen(false);
-      searchInputRef.current.focus();
+      searchInputRef.current!.focus();
     }
   };
 
