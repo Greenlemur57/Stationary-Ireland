@@ -27,12 +27,19 @@ jobs:
         include:
           - platform: 'macos-latest' # for Arm based macs (M1 and above).
             args: '--target aarch64-apple-darwin'
+            artifacts: ${{ github.workspace }}/src-tauri/target/aarch64-apple-darwin/release/bundle/**/*.dmg
           - platform: 'macos-latest' # for Intel based macs.
             args: '--target x86_64-apple-darwin'
+            artifacts: ${{ github.workspace }}/src-tauri/target/x86_64-apple-darwin/release/bundle/**/*.dmg
           - platform: 'ubuntu-22.04' # for Tauri v1 you could replace this with ubuntu-20.04.
             args: ''
+            artifacts: |
+              ${{ github.workspace }}/src-tauri/target/release/bundle/**/*.deb
+              ${{ github.workspace }}/src-tauri/target/release/bundle/**/*.rpm
+              ${{ github.workspace }}/src-tauri/target/release/bundle/**/*.AppImage
           - platform: 'windows-latest'
             args: ''
+            artifacts: ${{ github.workspace }}/src-tauri/target/release/bundle/**/*.exe
 
     runs-on: ${{ matrix.platform }}
     steps:
@@ -68,21 +75,4 @@ jobs:
         if: matrix.platform == 'ubuntu-22.04'
         with:
           name: bin-linux
-          path: |
-            ${{ github.workspace }}/src-tauri/target/release/bundle/**/*.deb
-            ${{ github.workspace }}/src-tauri/target/release/bundle/**/*.rpm
-            ${{ github.workspace }}/src-tauri/target/release/bundle/**/*.AppImage
-
-      - uses: actions/upload-artifact@v4
-        if: matrix.platform == 'macos-latest'
-        with:
-          name: bin-macos
-          path: |
-            ${{ github.workspace }}/src-tauri/target/universal-apple-darwin/release/bundle/**/*.dmg
-
-      - uses: actions/upload-artifact@v4
-        if: matrix.platform == 'windows-latest'
-        with:
-          name: bin-windows
-          path: |
-            ${{ github.workspace }}/src-tauri/target/release/bundle/**/*.exe
+          path: ${{ matrix.artifacts }}
