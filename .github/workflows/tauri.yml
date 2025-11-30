@@ -62,4 +62,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          uploadWorkflowArtifacts: true
           args: ${{ matrix.args }}
