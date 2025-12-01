@@ -1,3 +1,5 @@
+import {storage} from "./storage.ts";
+
 export type Line = {
   displayName: string;
   colour: string;
@@ -86,3 +88,22 @@ export const Lines = {
 } as const satisfies Record<string, Line>;
 
 export type LineId = keyof typeof Lines;
+
+// Returned from `getVisitsPerLine`
+export type VisitsPerLine = {
+  [K in LineId]: number;
+};
+
+// Get how many times each line has been visited
+export async function getVisitsPerLine() {
+  const journeys = await storage.getJourneys();
+  const visitsPerLine = Object.fromEntries(Object.keys(Lines).map((id) => [id, 0])) as VisitsPerLine;
+
+  for (const journey of journeys) {
+    for (const part of journey.parts) {
+      visitsPerLine[part.line] += 1;
+    }
+  }
+
+  return visitsPerLine;
+}
