@@ -1,6 +1,6 @@
 import {PageHeader} from "../components/PageHeader.tsx";
 import {PageSection} from "@patternfly/react-core";
-import {ChartDonut, ChartLabel, ChartPie} from "@patternfly/react-charts/victory";
+import {ChartDonut, ChartLabel} from "@patternfly/react-charts/victory";
 import {VictoryStyleInterface} from "victory-core";
 import {getVisitsPerLine, LineId, Lines, VisitsPerLine} from "../utils/line.ts";
 import {useEffect, useState} from "react";
