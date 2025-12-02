@@ -26,20 +26,43 @@ jobs:
       matrix:
         include:
           - platform: 'macos-latest' # for Arm based macs (M1 and above).
+            name: "macos-arm"
             args: '--target aarch64-apple-darwin'
+            mobile: ''
             artifacts: src-tauri/target/aarch64-apple-darwin/release/bundle/**/*.dmg
-#          - platform: 'macos-latest' # for Intel based macs.
-#            args: '--target x86_64-apple-darwin'
-#            artifacts: src-tauri/target/x86_64-apple-darwin/release/bundle/**/*.dmg
+
+          - platform: 'macos-latest' # for Intel based macs.
+            name: "macos-x86_64"
+            args: '--target x86_64-apple-darwin'
+            mobile: ''
+            artifacts: src-tauri/target/x86_64-apple-darwin/release/bundle/**/*.dmg
+
           - platform: 'ubuntu-22.04' # for Tauri v1 you could replace this with ubuntu-20.04.
+            name: 'linux'
             args: ''
+            mobile: ''
             artifacts: |
               src-tauri/target/release/bundle/**/*.deb
               src-tauri/target/release/bundle/**/*.rpm
               src-tauri/target/release/bundle/**/*.AppImage
+
           - platform: 'windows-latest'
+            name: 'windows'
             args: ''
+            mobile: ''
             artifacts: src-tauri/target/release/bundle/**/*.exe
+
+          - platform: 'ubuntu-22.04'
+            name: 'android'
+            args: ''
+            mobile: 'android'
+            artifacts: []
+
+          - platform: 'macos-latest' # for Arm based macs (M1 and above).
+            name: 'ios'
+            args: '--target aarch64-apple-darwin'
+            mobile: 'ios'
+            artifacts: []
 
     runs-on: ${{ matrix.platform }}
     steps:
@@ -70,8 +93,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           args: ${{ matrix.args }}
+          mobile: ${{ matrix.mobile }}
 
       - uses: actions/upload-artifact@v4
         with:
-          name: '${{ matrix.platform }}-bin'
+          name: '${{ matrix.name }}-bin'
           path: '${{ github.workspace }}/${{ matrix.artifacts }}'
