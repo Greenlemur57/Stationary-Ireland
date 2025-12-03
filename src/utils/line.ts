@@ -88,6 +88,7 @@ export const Lines = {
 } as const satisfies Record<string, Line>;
 
 export type LineId = keyof typeof Lines;
+export const lineIds = Object.keys(Lines) as LineId[];
 
 // Returned from `getVisitsPerLine`
 export type VisitsPerLine = {
