@@ -58,11 +58,11 @@ jobs:
             mobile: 'android'
             artifacts: []
 
-          - platform: 'macos-latest'
-            name: 'ios'
-            args: ''
-            mobile: 'ios'
-            artifacts: []
+#          - platform: 'macos-latest'
+#            name: 'ios'
+#            args: ''
+#            mobile: 'ios'
+#            artifacts: []
 
     runs-on: ${{ matrix.platform }}
     steps:
