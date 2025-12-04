@@ -1,4 +1,5 @@
 import {
+  Button,
   Content,
   DatePicker,
   PageSection,
@@ -13,6 +14,7 @@ import {Journey, JourneyPart} from "../utils/journey.ts";
 import {Stations} from "../utils/station.ts";
 import {Lines} from "../utils/line.ts";
 import {useNavigate} from "react-router";
+import TimesIcon from '@patternfly/react-icons/dist/esm/icons/times-icon';
 
 export function AddJourney() {
   const navigate = useNavigate();
@@ -76,10 +78,10 @@ export function AddJourney() {
                     borderColor: "black",
                     backgroundColor: "rgba(0, 0, 0, 0)"
                   }}></span>
-                  {" "}
                   <h2 style={{
                     display: "inline"
-                  }}>{Stations[p.station].displayName}</h2>
+                  }}> {Stations[p.station].displayName} </h2>
+                  <Button onClick={() => setJourneyParts(journeyParts.filter((_, i) => i !== idx))} variant="plain" aria-label="Remove" icon={<TimesIcon />} />
                 </Content>
               </div>
             ))}

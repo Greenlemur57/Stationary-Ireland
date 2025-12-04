@@ -97,6 +97,7 @@ export function Home() {
                         <PanelMainBody>
                           <List isPlain isBordered>
                             {visitsPerStation && Object.entries(visitsPerStation)
+                              .filter(([_station, visits]) => visits > 0)
                               .sort(([_stationA, visitsA], [_stationB, visitsB]) => visitsB - visitsA)
                               .slice(0, 10)
                               .map(([station, visits]) => (
