@@ -1,5 +1,7 @@
 import {PageHeader} from "../components/PageHeader.tsx";
 import {
+  Content,
+  ContentVariants,
   Divider,
   EmptyState,
   EmptyStateBody,
@@ -33,93 +35,96 @@ export function Home() {
       <PageSection>
         {journeys.length > 0 ? (
           <>
-            {visitsPerLine && (
-              <Flex direction={{ default: 'column' }}>
-                <Flex>
-                  <FlexItem style={{ height: '150px', width: '150px' }}>
-                    <ChartDonut
-                      constrainToVisibleArea
-                      style={{
-                        data: {
-                          fill: ({ datum }) => Lines[datum.x as LineId].colour,
-                        },
-                      }}
-                      labels={({ datum }) => `${Lines[datum.x as LineId].displayName}: ${datum.y}`}
-                      height={150}
-                      width={150}
-                      title={`Journeys\nper line`}
-                      titleComponent={
-                        <ChartLabel style={[{
-                          fontSize: 16
-                        }]} />
-                      }
-                      data={Object.entries(visitsPerLine).map(([line, visits]) => {
-                        return {
-                          x: line,
-                          y: visits
-                        };
-                      })}
-                    />
-                  </FlexItem>
-                  <FlexItem style={{ height: '150px', width: '150px' }}>
-                    <ChartDonut
-                      constrainToVisibleArea
-                      style={{
-                        data: {
-                          fill: ({ datum }) => datum.visits > 0 ? Lines[datum.x as LineId].colour : "var(--pf-t--color--gray--20)",
-                        },
-                      }}
-                      labels={({ datum }) => Lines[datum.x as LineId].displayName}
-                      height={150}
-                      width={150}
-                      title={`Lines\nvisited`}
-                      titleComponent={
-                        <ChartLabel style={[{
-                          fontSize: 16
-                        }]} />
-                      }
-                      data={Object.entries(visitsPerLine).map(([line, visits]) => {
-                        return {
-                          x: line,
-                          y: 1,
-                          visits: visits
-                        };
-                      })}
-                    />
-                  </FlexItem>
-                </Flex>
-                <Flex>
-                  <FlexItem style={{ height: '400px', width: '400px' }}>
-                    <Panel isScrollable variant="bordered">
-                      <PanelHeader>Top 10 most visited stations</PanelHeader>
-                      <Divider />
-                      <PanelMain>
-                        <PanelMainBody>
-                          <List isPlain isBordered>
-                            {visitsPerStation && Object.entries(visitsPerStation)
-                              .filter(([_station, visits]) => visits > 0)
-                              .sort(([_stationA, visitsA], [_stationB, visitsB]) => visitsB - visitsA)
-                              .slice(0, 10)
-                              .map(([station, visits]) => (
-                                <ListItem key={station}>
-                                  <Flex>
-                                    <FlexItem grow={{ default: 'grow' }}>
-                                      {Stations[station as StationId].displayName}
-                                    </FlexItem>
-                                    <FlexItem>
-                                      {visits}
-                                    </FlexItem>
-                                  </Flex>
-                                </ListItem>
-                              ))}
-                          </List>
-                        </PanelMainBody>
-                      </PanelMain>
-                    </Panel>
-                  </FlexItem>
-                </Flex>
+            <Content component={ContentVariants.h4}>Total journeys: {journeys.length}</Content>
+            <Flex direction={{ default: 'column' }}>
+              <Flex>
+                {visitsPerLine && (
+                  <>
+                    <FlexItem style={{ height: '150px', width: '150px' }}>
+                      <ChartDonut
+                        constrainToVisibleArea
+                        style={{
+                          data: {
+                            fill: ({ datum }) => Lines[datum.x as LineId].colour,
+                          },
+                        }}
+                        labels={({ datum }) => `${Lines[datum.x as LineId].displayName}: ${datum.y}`}
+                        height={150}
+                        width={150}
+                        title={`Journeys\nper line`}
+                        titleComponent={
+                          <ChartLabel style={[{
+                            fontSize: 16
+                          }]} />
+                        }
+                        data={Object.entries(visitsPerLine).map(([line, visits]) => {
+                          return {
+                            x: line,
+                            y: visits
+                          };
+                        })}
+                      />
+                    </FlexItem>
+                    <FlexItem style={{ height: '150px', width: '150px' }}>
+                      <ChartDonut
+                        constrainToVisibleArea
+                        style={{
+                          data: {
+                            fill: ({ datum }) => datum.visits > 0 ? Lines[datum.x as LineId].colour : "var(--pf-t--color--gray--20)",
+                          },
+                        }}
+                        labels={({ datum }) => Lines[datum.x as LineId].displayName}
+                        height={150}
+                        width={150}
+                        title={`Lines\nvisited`}
+                        titleComponent={
+                          <ChartLabel style={[{
+                            fontSize: 16
+                          }]} />
+                        }
+                        data={Object.entries(visitsPerLine).map(([line, visits]) => {
+                          return {
+                            x: line,
+                            y: 1,
+                            visits: visits
+                          };
+                        })}
+                      />
+                    </FlexItem>
+                  </>
+                )}
               </Flex>
-            )}
+              <Flex>
+                <FlexItem style={{ height: '400px', width: '400px' }}>
+                  <Panel isScrollable variant="bordered">
+                    <PanelHeader>Top 10 most visited stations</PanelHeader>
+                    <Divider />
+                    <PanelMain>
+                      <PanelMainBody>
+                        <List isPlain isBordered>
+                          {visitsPerStation && Object.entries(visitsPerStation)
+                            .filter(([_station, visits]) => visits > 0)
+                            .sort(([_stationA, visitsA], [_stationB, visitsB]) => visitsB - visitsA)
+                            .slice(0, 10)
+                            .map(([station, visits]) => (
+                              <ListItem key={station}>
+                                <Flex>
+                                  <FlexItem grow={{ default: 'grow' }}>
+                                    {Stations[station as StationId].displayName}
+                                  </FlexItem>
+                                  <FlexItem>
+                                    {visits}
+                                  </FlexItem>
+                                </Flex>
+                              </ListItem>
+                            ))}
+                        </List>
+                      </PanelMainBody>
+                    </PanelMain>
+                  </Panel>
+                </FlexItem>
+              </Flex>
+            </Flex>
           </>
         ) : !loading && (
           <EmptyState titleText="Welcome to Stationary" icon={CubesIcon}>
