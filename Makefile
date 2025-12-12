@@ -7,3 +7,7 @@ build:
 .PHONY: dev
 dev:
 	WEBKIT_DISABLE_DMABUF_RENDERER=1 $(TAURI) dev
+
+.PHONY: web
+web:
+	npm run dev

@@ -1,13 +1,13 @@
 import {useEffect, useState} from "react";
 import {Journey} from "../utils/journey.ts";
-import {storage} from "../utils/storage.ts";
+import {useStorage} from "./useStorage.ts";
 
 export function useJourneys() {
   const [journeys, setJourneys] = useState<Journey[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    storage.getJourneys().then((data) => {
+    useStorage().getJourneys().then((data) => {
       setJourneys(data);
       setLoading(false);
     });

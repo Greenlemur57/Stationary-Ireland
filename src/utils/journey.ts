@@ -1,7 +1,7 @@
 import {StationId} from "./station.ts";
 import {v4} from "uuid";
-import {storage} from "./storage.ts";
 import {LineId} from "./line.ts";
+import {useStorage} from "../hooks/useStorage.ts";
 
 export type JourneyPart = {
   station: StationId;
@@ -50,10 +50,9 @@ export class Journey {
   public async save() {
     this.uuid = v4();
 
+    const storage = useStorage();
     let journeys = await storage.getJourneys();
-
     journeys.push(this);
-
     await storage.setJourneys(journeys);
   }
 }

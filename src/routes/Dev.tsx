@@ -1,27 +1,32 @@
 import {PageHeader} from "../components/PageHeader.tsx";
 import {Button, Content, ExpandableSection, PageSection} from "@patternfly/react-core";
-import {storage} from "../utils/storage.ts";
 import {Journey} from "../utils/journey.ts";
 import {stationIds, Stations} from "../utils/station.ts";
 import {lineIds, Lines} from "../utils/line.ts";
+import {useStorage} from "../hooks/useStorage.ts";
 
 export function Dev() {
-  const visitAllStations = async () => {
-    await new Journey(Date.now(), stationIds
-      .flatMap((stationId) => Stations[stationId].lines.map((lineId) => {
-        return {
-          station: stationId,
-          line: lineId,
-        };
-      })))
-      .save();
+  const storage = useStorage();
+
+  const visitAllStations = async (times: number) => {
+    for (let i = 0; i < times; i++) {
+      await new Journey(Date.now(), stationIds
+        .flatMap((stationId) => Stations[stationId].lines.map((lineId) => {
+          return {
+            station: stationId,
+            line: lineId,
+          };
+        })))
+        .save();
+    }
   };
 
   return (
     <>
       <PageHeader title="Dev tools" description="This page can cause damage to your Stationary data that cannot be undone. Be careful." />
       <PageSection>
-        <Button onClick={visitAllStations} variant="primary">Visit all stations</Button>
+        <Button onClick={async () => visitAllStations(1)} variant="primary">Visit all stations</Button>
+        <Button onClick={async () => visitAllStations(100)} variant="primary">Visit all stations 100 times</Button>
         <Button onClick={async () => console.log(await storage.getJourneys())} variant="primary">Log journeys to console</Button>
         <Button onClick={async () => await storage.clearJourneys()} variant="danger">Clear journeys</Button>
       </PageSection>
