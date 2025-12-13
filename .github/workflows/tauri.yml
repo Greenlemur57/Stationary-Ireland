@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   push:
     branches: ["**"]
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
   analyze:
@@ -121,3 +123,25 @@ jobs:
         with:
           name: '${{ matrix.name }}-bin'
           path: '${{ github.workspace }}/${{ matrix.artifacts }}'
+
+  release:
+    if: github.event_name == 'schedule'
+    needs: build-tauri
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: download artifacts from build
+        uses: actions/download-artifact@v4
+        with:
+          path: release-artifacts/
+
+      - name: create nightly release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "nightly-${{ github.run_id }}"
+          name: "Nightly Build ${{ github.run_id }}"
+          files: release-artifacts/**/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

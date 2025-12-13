@@ -10,7 +10,7 @@ App Store: TBD
 ### Android
 Play Store: TBD
 
-APK Download: TBD
+APK Download (Unstable): [https://github.com/TangledWiresOfficial/Stationary/releases/latest](https://github.com/TangledWiresOfficial/Stationary/releases/latest)
 
 ### Online
 You can also use Stationary online at [https://stationary.tangledwires.co.uk/](https://stationary.tangledwires.co.uk/)
