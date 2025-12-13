@@ -6,6 +6,9 @@ import {isTauri} from "@tauri-apps/api/core";
 const JOURNEYS_KEY = "journeys";
 
 export interface DataStorage {
+  // Get the name of the storage backend
+  getBackendName: () => string;
+
   // Get the list of journeys
   getJourneys: () => Promise<Journey[]>;
 
@@ -25,6 +28,10 @@ export class TauriStorage implements DataStorage {
     this.store = new LazyStore(TAURI_STORE_PATH);
   }
 
+  public getBackendName() {
+    return "TauriStorage";
+}
+
   public async getJourneys() {
     const raw = await this.store.get(JOURNEYS_KEY);
 
@@ -43,6 +50,10 @@ export class TauriStorage implements DataStorage {
 const BROWSER_DATA_KEY = "data";
 
 export class BrowserStorage implements DataStorage {
+  public getBackendName() {
+    return "BrowserStorage";
+  }
+
   public async getJourneys() {
     const raw = this.getData()[JOURNEYS_KEY];
 

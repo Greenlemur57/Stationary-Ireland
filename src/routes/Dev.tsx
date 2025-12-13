@@ -1,9 +1,10 @@
 import {PageHeader} from "../components/PageHeader.tsx";
-import {Button, Content, ExpandableSection, PageSection} from "@patternfly/react-core";
+import {Button, Content, ContentVariants, ExpandableSection, PageSection} from "@patternfly/react-core";
 import {Journey} from "../utils/journey.ts";
 import {stationIds, Stations} from "../utils/station.ts";
 import {lineIds, Lines} from "../utils/line.ts";
 import {getStorage} from "../utils/storage.ts";
+import {isTauri} from "@tauri-apps/api/core";
 
 export function Dev() {
   const storage = getStorage();
@@ -31,10 +32,17 @@ export function Dev() {
         <Button onClick={async () => await storage.clearJourneys()} variant="danger">Clear journeys</Button>
       </PageSection>
       <PageSection>
-        <Content>
-          <p>Number of lines: {lineIds.length}</p>
-          <p>Number of stations: {stationIds.length}</p>
+        <Content component={ContentVariants.p}>
+          Number of lines: {lineIds.length}
+          <br />
+          Number of stations: {stationIds.length}
+          <br />
+          Is Tauri: {isTauri().toString()}
+          <br />
+          Storage backend: {storage.getBackendName()}
         </Content>
+      </PageSection>
+      <PageSection>
         <ExpandableSection toggleText="Station list">
           {Object.entries(Stations).map(([key, station]) => (
             <div key={key}>
