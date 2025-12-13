@@ -86,7 +86,7 @@ export function AddJourney() {
               </div>
             ))}
           </WizardStep>
-          <WizardStep name="Date and time of journey" id="date-and-time" isDisabled={!isStepOneValid} footer={{ isNextDisabled: !isStepTwoValid }}>
+          <WizardStep name="Date of journey" id="date-and-time" isDisabled={!isStepOneValid} footer={{ isNextDisabled: !isStepTwoValid }}>
             <Content>
               <h4>Date of journey</h4>
             </Content>
