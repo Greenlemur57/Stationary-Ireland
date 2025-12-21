@@ -182,7 +182,7 @@ export function JourneyHistory() {
           )) : !loading && (
             <EmptyState titleText="No journeys" icon={CubesIcon}>
               <EmptyStateBody>
-                You haven't added any journeys yet. Go to <BarsIcon /> then 'Add journey' or press 'Import journey' above to begin.
+                You haven't added any journeys yet. Go to <BarsIcon /> then 'New journey' or press 'Import journey' above to begin.
               </EmptyStateBody>
             </EmptyState>
           )}

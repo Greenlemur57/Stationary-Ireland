@@ -129,7 +129,7 @@ export function Home() {
         ) : !loading && (
           <EmptyState titleText="Welcome to Stationary" icon={CubesIcon}>
             <EmptyStateBody>
-              You haven't added any journeys yet. Go to <BarsIcon /> then 'Add journey' to begin.
+              You haven't added any journeys yet. Go to <BarsIcon /> then 'New journey' to begin.
             </EmptyStateBody>
           </EmptyState>
         )}
