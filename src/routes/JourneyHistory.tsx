@@ -14,8 +14,6 @@ import {
   DropdownList,
   EmptyState,
   EmptyStateBody,
-  Flex,
-  FlexItem,
   Form,
   FormAlert,
   FormGroup,
