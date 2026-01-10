@@ -5,6 +5,7 @@ import {
   Card,
   CardBody,
   CardFooter,
+  CardHeader,
   CardTitle,
   ClipboardCopy,
   Content,
@@ -87,7 +88,7 @@ export function JourneyHistory() {
       <ModalBody>This cannot be undone.</ModalBody>
       <ModalFooter>
         <Button key="confirm" variant="danger" onClick={() => deleteJourney()}>Confirm</Button>
-        <Button key="cancel" variant="link" onClick={closeJourneyImporter}>Cancel</Button>
+        <Button key="cancel" variant="link" onClick={() => setDeleteConfirmationOpen(false)}>Cancel</Button>
       </ModalFooter>
     </Modal>
   );
@@ -149,28 +150,25 @@ export function JourneyHistory() {
           {journeys.length > 0 ? journeys.map((j) => (
             <ListItem key={j.uuid}>
               <Card>
-                <CardTitle>
-                  <Flex direction={{ default: "row" }}>
-                    <FlexItem grow={{ default: "grow" }}>
-                      {Stations[j.parts[0].station].displayName} <Icon><AngleRightIcon /></Icon> {Stations[j.parts[j.parts.length - 1].station].displayName}
-                    </FlexItem>
-                    <FlexItem>
-                      <KebabDropdown>
-                        <DropdownList>
-                          <DropdownItem onClick={() => shareJourney(j)}>
-                            Share
-                          </DropdownItem>
-                          <DropdownItem isDanger onClick={() => {
-                            setToBeDeleted(j);
-                            setDeleteConfirmationOpen(true);
-                          }}>
-                            Delete
-                          </DropdownItem>
-                        </DropdownList>
-                      </KebabDropdown>
-                    </FlexItem>
-                  </Flex>
-                </CardTitle>
+                <CardHeader actions={{ actions: (
+                  <KebabDropdown>
+                    <DropdownList>
+                      <DropdownItem onClick={() => shareJourney(j)}>
+                        Share
+                      </DropdownItem>
+                      <DropdownItem isDanger onClick={() => {
+                        setToBeDeleted(j);
+                        setDeleteConfirmationOpen(true);
+                      }}>
+                        Delete
+                      </DropdownItem>
+                    </DropdownList>
+                  </KebabDropdown>
+                ) }}>
+                  <CardTitle>
+                    {Stations[j.parts[0].station].displayName} <Icon><AngleRightIcon /></Icon> {Stations[j.parts[j.parts.length - 1].station].displayName}
+                  </CardTitle>
+                </CardHeader>
                 <CardBody>
                   Stations: {j.parts.map((p) => Stations[p.station].displayName).join(", ")}
                 </CardBody>
