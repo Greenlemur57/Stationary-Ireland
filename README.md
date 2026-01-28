@@ -1,8 +1,8 @@
 # Stationary
-
-Stationary is an app for tracking which UK train stations you've visited.
+Stationary Ireland is an app for tracking which rail stations in Ireland you have visited.
 
 ## Get the app
+Still in development, no release yet
 
 ### iOS
 App Store: TBD
@@ -10,10 +10,9 @@ App Store: TBD
 ### Android
 Play Store: TBD
 
-APK Download (Unstable): [https://github.com/TangledWiresOfficial/Stationary/releases/latest](https://github.com/TangledWiresOfficial/Stationary/releases/latest)
 
 ### Online
-You can also use Stationary online at [https://stationary.tangledwires.co.uk/](https://stationary.tangledwires.co.uk/)
+
 
 ## Developing
 
